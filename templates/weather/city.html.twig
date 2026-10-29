@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{# @var location \App\Entity\Location #}
+{# @var forecasts \App\Entity\Forecast[] #}
+{% block title %}Weather in {{ location.name }}, {{ location.country }}{% endblock %}
+{% block body %}
+    <main style="padding: 20px; font-family: Arial, sans-serif;">
+        <h1>Weather in {{ location.name }}, {{ location.country }}</h1>
+        <p>Współrzędne: Szerokość {{ location.latitude }}, Długość {{ location.longitude }}</p>
+
+        <h2>Prognoza:</h2>
+        {% if forecasts is not empty %}
+            <ul>
+                {% for forecast in forecasts %}
+                    <li>
+                        {{ forecast.date|date('d.m.Y') }}:
+                        Temperatura: {{ forecast.temperatura }}&deg;C,
+                        Wiatr: {{ forecast.wind }} km/h,
+                        Wilgotność: {{ forecast.humidity }}%,
+                        Ciśnienie: {{ forecast.pressure }} hPa
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Brak aktualnych prognoz dla tej lokalizacji.</p>
+        {% endif %}
+    </main>
+{% endblock %}
