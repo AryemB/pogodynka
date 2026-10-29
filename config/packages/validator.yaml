@@ -1,5 +1,8 @@
 framework:
     validation:
+        mapping:
+            paths:
+                - '%kernel.project_dir%/config/validation'
         # Enables validator auto-mapping support.
         # For instance, basic validation constraints will be inferred from Doctrine's metadata.
         #auto_mapping:

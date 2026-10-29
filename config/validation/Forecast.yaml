@@ -1,0 +1,39 @@
+App\Entity\Forecast:
+    properties:
+        location:
+            - NotBlank:
+                  groups: [create, edit]
+        date:
+            - NotBlank:
+                  groups: [create, edit]
+            - GreaterThanOrEqual:
+                  value: today
+                  message: The forecast date cannot be in the past.
+                  groups: [create]
+        temperatura:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: -60
+                  max: 60
+                  groups: [create, edit]
+        humidity:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 100
+                  groups: [create, edit]
+        pressure:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: 900
+                  max: 1100
+                  groups: [create, edit]
+        wind:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  groups: [create, edit]
