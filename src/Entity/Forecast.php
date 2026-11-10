@@ -21,8 +21,8 @@ class Forecast
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date = null;
 
-    #[ORM\Column]
-    private ?int $temperatura = null;
+    #[ORM\Column(type: 'float')]
+    private ?float $temperatura = null;
 
     #[ORM\Column]
     private ?int $wind = null;
@@ -62,12 +62,12 @@ class Forecast
         return $this;
     }
 
-    public function getTemperatura(): ?int
+    public function getTemperatura(): float|int|null
     {
         return $this->temperatura;
     }
 
-    public function setTemperatura(int $temperatura): static
+    public function setTemperatura(float|int $temperatura): static
     {
         $this->temperatura = $temperatura;
 
@@ -108,5 +108,10 @@ class Forecast
         $this->pressure = $pressure;
 
         return $this;
+    }
+
+    public function getFahrenheit(): float|int
+    {
+        return ($this->temperatura * 9 / 5) + 32;
     }
 }
